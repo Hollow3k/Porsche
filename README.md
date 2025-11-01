@@ -1,4 +1,4 @@
-# GT3S
+# GT3RS
 
 Built this to learn and understand Three JS
 
