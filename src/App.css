@@ -4,45 +4,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 180px;
-  overflow: hidden;
-  z-index: 9999;
-  pointer-events: none;
+  height: 100vh;       /* stays exactly in the viewport */
+  overflow: hidden;    /* prevents it from scrolling with the page */
+  z-index: 9999;       /* sits above normal page content */
+  pointer-events: none; /* default: let children opt-in for pointer events */
 }
 
 /* the canvas wrapper should accept pointer events so the model remains interactive */
 .fixedScene .porscheWrapper {
   width: 100%;
   height: 100%;
-  position: relative;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;   /* preserves existing relative positioning inside Porsche */
+  pointer-events: auto; /* enable interaction with the 3D canvas */
 }
 
 /* keep the name layer non-interactive (only visual) — Name.css already centers it */
 .fixedScene .nameWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pageContent {
-  position: relative;
-  z-index: 0;
-  padding-top: 180px;
-  background: #0b0b0b;
-  color: #fff;
-  min-height: 200vh;
-}
-
-html, body, #root {
-  overflow-x: hidden;
 }
