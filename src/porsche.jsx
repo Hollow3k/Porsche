@@ -9,7 +9,7 @@ function Model() {
 
 function Porsche() {
   return (
-    <div style={{ width: '100vw', height: '100vh', marginTop: '150px', zIndex:10000 }}>
+    <div style={{ position:'fixed', width: '100vw', height: '100vh', marginTop: '150px', zIndex:10000 }}>
       <Canvas shadows camera={{ position: [90, 90, 90], fov: 20 }}>
         <Suspense fallback={null}>
           <Model />
