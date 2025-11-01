@@ -10,13 +10,21 @@ function Model() {
   useEffect(() => {
     function updateScale() {
       const w = window.innerWidth;
-      const h = window.innerHeight;
       const ref = 1440;
-      const base = Math.min(w, h);
-      let scale = (base / ref) * 14;
-      scale = Math.max(6, Math.min(30, scale));
+
+      let scale;
+      if (w <= 1000) {
+        scale = (w / ref) * 14;
+      } else {
+        const base = (1000 / ref) * 14;
+        const extra = ((w - 1000) / ref) * 7; // dampened growth after 1000px
+        scale = base + extra;
+      }
+
+      scale = Math.max(4, Math.min(80, scale));
       setS(Number(scale.toFixed(2)));
     }
+
     updateScale();
     window.addEventListener('resize', updateScale);
     return () => window.removeEventListener('resize', updateScale);
@@ -27,7 +35,7 @@ function Model() {
 
 function Porsche() {
   return (
-    <div className="model">
+    <div className="model" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <Canvas shadows camera={{ position: [90, 90, 90], fov: 20 }}>
         <Suspense fallback={null}>
           <Model />
